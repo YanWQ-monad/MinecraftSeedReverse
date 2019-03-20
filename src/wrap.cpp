@@ -163,7 +163,7 @@ void filterSeedLow20(const List &structures, List *out) {
   }
 
   print_progress(title, 100);
-  puts("");
+  ends_progress();
 }
 
 void filterSeedLow48(const List &structures, const List &low20, List *out) {
@@ -184,7 +184,7 @@ void filterSeedLow48(const List &structures, const List &low20, List *out) {
   }
 
   print_progress(title, 100);
-  puts("");
+  ends_progress();
 }
 
 void filterSeedAll(const List &biomes, const List &low48, List *out) {
@@ -205,5 +205,5 @@ void filterSeedAll(const List &biomes, const List &low48, List *out) {
   }
 
   print_progress(title, 100);
-  puts("");
+  ends_progress();
 }

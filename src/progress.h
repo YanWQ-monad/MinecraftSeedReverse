@@ -4,5 +4,6 @@
 void print_progress(const char *title, const int percentage,
                     const int len = 20);
 void print_progress(const int percentage, const int len = 20);
+void ends_progress();
 
 #endif  // MINECRAFTSEED_PROGRESS_H_
