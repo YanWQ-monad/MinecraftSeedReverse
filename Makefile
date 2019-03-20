@@ -39,6 +39,10 @@ $(CUBIOMES_OBJ): build/cu_%.o: cubiomes/%.c
 build/cubiomes.a: $(CUBIOMES_OBJ)
 	$(AR) rs $@ $^
 
+.PHONY: test
+test: reverse_seed
+	./test.py
+
 .PHONY: clean
 clean:
 	-rm -f $(OBJS) $(THIRD_PARTY) $(CUBIOMES_OBJ)
