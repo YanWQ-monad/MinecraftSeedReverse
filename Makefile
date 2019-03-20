@@ -5,38 +5,40 @@ LDFLAGS += $(DEBUG_FALG)
 CU_CFLAGS = -Wall -fwrapv -march=native
 
 .PHONY: all
-all: reverse_seed
+all: build
 
 SUB_TARGET = random main generator wrap progress config
-OBJS = $(addprefix build/,$(addsuffix .o,$(SUB_TARGET)))
-THIRD_PARTY = build/cubiomes.a
+OBJS = $(addprefix bin/,$(addsuffix .o,$(SUB_TARGET)))
+THIRD_PARTY = bin/cubiomes.a
 CUBIOMES_NAME = finders generator layers
-CUBIOMES_OBJ = $(addprefix build/cu_,$(addsuffix .o,$(CUBIOMES_NAME)))
+CUBIOMES_OBJ = $(addprefix bin/cu_,$(addsuffix .o,$(CUBIOMES_NAME)))
 
-include $(addprefix build/,$(addsuffix .d,$(SUB_TARGET)))
+include $(addprefix bin/,$(addsuffix .d,$(SUB_TARGET)))
 
 reverse_seed: $(OBJS) $(THIRD_PARTY)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
-build/%.d: src/%.c
-	$(CC) -MM -MP $< $(CXXFLAGS) | sed 's,\($*\)\.o[ :]*,build/\1.o $@ : ,g' > $@
+bin/%.d: src/%.c bin
+	$(CC) -MM -MP $< $(CXXFLAGS) | sed 's,\($*\)\.o[ :]*,bin/\1.o $@ : ,g' > $@
 
-build/%.d: src/%.cpp
-	$(CXX) -MM -MP $< $(CXXFLAGS) | sed 's,\($*\)\.o[ :]*,build/\1.o $@ : ,g' > $@
+bin/%.d: src/%.cpp bin
+	$(CXX) -MM -MP $< $(CXXFLAGS) | sed 's,\($*\)\.o[ :]*,bin/\1.o $@ : ,g' > $@
 
-build/%.o: src/%.c
+bin/%.o: src/%.c bin
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-build/%.o: src/%.cpp
+bin/%.o: src/%.cpp bin
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
 
-$(CUBIOMES_OBJ): build/cu_%.o: cubiomes/%.c
+$(CUBIOMES_OBJ): bin/cu_%.o: cubiomes/%.c
 	$(CC) -c -o $@ $^ $(CU_CFLAGS)
 
-build/cubiomes.a: $(CUBIOMES_OBJ)
+bin/cubiomes.a: $(CUBIOMES_OBJ)
 	$(AR) rs $@ $^
 
+bin:
+	mkdir bin
 
 .PHONY: build
 build: reverse_seed
