@@ -1,17 +1,17 @@
 workflow "Build & Test" {
   on = "push"
-  resolves = ["actions/action-builder/shell@master-1"]
+  resolves = ["Test"]
 }
 
-action "actions/action-builder/shell@master" {
+action "Build" {
   uses = "actions/action-builder/shell@master"
   runs = "make"
   args = "build"
 }
 
-action "actions/action-builder/shell@master-1" {
+action "Test" {
   uses = "actions/action-builder/shell@master"
-  needs = ["actions/action-builder/shell@master"]
   runs = "make"
   args = "test"
+  needs = ["Build"]
 }
