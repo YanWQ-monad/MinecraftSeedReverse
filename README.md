@@ -1,2 +1,2 @@
 # MinecraftSeedReverse
-Find a seed by the position of the structures and biome information
+Find a seed by the positions of the structures and biome information

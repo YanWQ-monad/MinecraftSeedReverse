@@ -1,0 +1,33 @@
+# The more information you give, the more accurate the seed you get.
+# Note: VILLAGE is used to filter the low 20 bit (4+ is enough)
+
+# The line starts with "#" will be ignored
+
+# The center(chunk) of the structure:
+#   Village: the well
+#   Ocean Monument: the top roof of the monument
+#   Nether Fortress: some crossroad (difficult to determine, not recommended)
+#   Temple: The center of the temple
+#     -> Temple includes Desert Temple, Jungle Temple, Witch Hut, Igloo
+#   Mansion: The center of the gate
+#   End City: The center of the first floor
+
+Structures:
+  Village -110 -50
+  Village -11 -18
+  Village -9 129
+  Village 52 150
+  Mansion 1311 -933
+  OceanMonument 203 239
+  Temple -209 -128
+  NetherFortress -11 -22
+  EndCity -73 -15
+
+Biomes:
+  Ocean -200 132
+  Beach -194 140
+  WoodedHills -174 210
+  Plains -166 224
+  SunflowerPlains -141 253
+
+# Expect seed: 1
