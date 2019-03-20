@@ -30,14 +30,16 @@ build/%.o: src/%.c
 build/%.o: src/%.cpp
 	$(CXX) -c -o $@ $< $(CXXFLAGS)
 
-build:
-	mkdir build
 
 $(CUBIOMES_OBJ): build/cu_%.o: cubiomes/%.c
 	$(CC) -c -o $@ $^ $(CU_CFLAGS)
 
 build/cubiomes.a: $(CUBIOMES_OBJ)
 	$(AR) rs $@ $^
+
+
+.PHONY: build
+build: reverse_seed
 
 .PHONY: test
 test: reverse_seed
